@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org">
+<head th:replace="~{layout :: head}"></head>
+<body>
+
+<div class="container">
+    <header th:replace="~{layout :: header}"></header>
+    <div th:replace="~{layout :: promo }"></div>
+
+    <div class="main">
+
+        <div class="open-menu">
+            <a th:href="@{/food/index}"> Click here to Order!</a>
+        </div>
+
+    </div>
+
+
+    <footer th:replace="~{layout :: footer}"></footer>
+</div>
+
+
+
+</body>
+
+</html>

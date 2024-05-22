@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org">
+<head th:replace="~{layout :: head}"></head>
+<body>
+    <div class="cart-container">
+        <header th:replace="~{layout :: header}"></header>
+
+        <div th:if="${grid == null}" class="cart-list empty-list">
+            <img th:src="@{/resources/image/empty-cart.png}" alt="" class="empty-cart">
+            <h2 class="empty-text">Your Cart is empty :(</h2>
+            <div class="open-menu">
+                <a th:href="@{/food/index}"> Click here to Order!</a>
+            </div>
+        </div>
+        <div th:if="${grid != null}" class="cart-list">
+            <table>
+                <thead>
+                   <tr>
+                       <th>Name</th>
+                       <th>Price</th>
+                       <th>Quantity</th>
+                       <th>Total Price</th>
+                   </tr>
+                </thead>
+                <tbody>
+                <tr th:each="row : ${grid}" th:object="${row}">
+                    <td th:text="*{name}"></td>
+                    <td th:text="*{#numbers.formatCurrency(price)}"></td>
+                    <td>
+                        <div class="plus-minus">
+                            <a th:href="@{/cart/deleteOne(name = *{name})}"><i class="fas fa-minus"></i></a> <span th:text="*{total}"></span>
+                            <a th:href="@{/cart/addOne(name = *{name})}"><i class="fas fa-plus"></i></a>
+                        </div>
+                    </td>
+                    <td th:text="*{#numbers.formatCurrency(totalPrice)}" class="right-align"></td>
+                </tr>
+
+                <tr>
+                    <td class="bold">Total Price</td>
+                    <td th:text="${#numbers.formatCurrency(totalPrice)}" colspan="3" class="right-align bold"></td>
+                </tr>
+                <tr>
+                    <td class="bold">Tax 10%</td>
+                    <td th:text="${#numbers.formatCurrency(tax)}" colspan="3" class="right-align bold"></td>
+                </tr>
+                <tr>
+                    <td class="bold"> Final Price</td>
+                    <td class="bold right-align final-price" th:text="${#numbers.formatCurrency(final)}" colspan="3"></td>
+                </tr>
+                    </tbody>
+            </table>
+            <div class="payment-container">
+                <h2>Payment Method</h2>
+                <div>Please Select Payment Method</div>
+                <a class="qr-payment"> QR Payment <img th:src="@{/resources/image/qris.png}"></a>
+                <a class="card-payment"> Credit / Debit <img th:src="@{/resources/image/visa.png}" ></a>
+                <a class="cash-payment"> Cash</a>
+            </div>
+            </div>
+
+        <footer th:replace="~{layout :: footer}"></footer>
+    </div>
+
+<div class="modal-layer">
+    <div class="popup-dialog">
+        <h3>Complete Your  Payment Here</h3>
+        <div class="payment-image">
+            <div class="payment-logo">
+                <img th:src="@{/resources/image/qris.png}" alt="">
+            </div>
+            <img th:src="@{/resources/image/qr.jpg}" alt="">
+        </div>
+        <a th:href="@{/cart/purchaseAll}" class="done-payment">Done</a>
+        <a href="" class="close-popup">Close</a>
+    </div>
+</div>
+</body>
+<script th:src="@{/resources/js/payment.js}" ></script>
+</html>

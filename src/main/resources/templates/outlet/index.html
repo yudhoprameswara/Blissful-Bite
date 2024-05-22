@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org">
+<head th:replace="~{layout :: head}"></head>
+<body class="outlet-container">
+    <header th:replace="~{layout :: header}"></header>
+    <div class="outlet-main">
+    <table>
+        <tbody th:each="row : ${grid}" th:object="${row}">
+        <tr>
+            <td class="bold label">Name</td>
+            <td th:text="*{name}"></td>
+        </tr>
+        <tr>
+            <td class="bold label">City</td>
+            <td th:text="*{city}"></td>
+        </tr>
+        <tr>
+            <td class="bold label">Address</td>
+            <td th:text="*{address}"></td>
+        </tr>
+        <tr>
+            <td class="bold label">Contact</td>
+            <td th:text="*{contact}"></td>
+        </tr>
+        <tr>
+            <td class="bold label">Link Address</td>
+            <td>
+                <a class="link" th:href="*{linkAddress}">Maps</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+    <footer th:replace="~{layout :: footer}"></footer>
+</body>
+
+</html>

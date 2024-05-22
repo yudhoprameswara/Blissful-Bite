@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org">
+<head th:replace="~{layout :: head}"></head>
+<div class="admin-menu-container">
+    <header th:replace="~{admin-layout :: admin-header}"></header>
+    <main class="content-history">
+        <div class="table-history-container">
+            <table class="history-table">
+                <thead>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Date</th>
+                </thead>
+                <tbody>
+                <tr th:each="row: ${grid}" th:object="${row}">
+                    <td th:text="*{name}"></td>
+                    <td th:text="*{category}"></td>
+                    <td th:text="*{#numbers.formatCurrency(price)}"></td>
+                    <td th:text="*{#temporals.format(purchaseDate, 'dd MMMM yyyy HH:mm:ss')}"></td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td  colspan="4">
+                        <div class="pagination">
+                            <div th:text="|page ${currentPage} of ${totalPages}|"></div>
+                            <div th:if="${totalPages != 0}">
+                                <a th:each="number : ${#numbers.sequence(1,totalPages)}"
+                                   th:text="${number}"
+                                   th:href="@{/history/index(page=${number},name=${name},startDate=${startDate},endDate=${endDate})}"
+                                ></a>
+                            </div>
+                            <div th:unless="${totalPages != 0}">
+                                Data not found!
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="total-price-card">
+            <h2>Total Income Based on</h2>
+            <form method="get" th:action="@{/history/index(startDate=${startDate},endDate=${endDate})}" >
+                <table>
+                <tr>
+                    <td>Food Name</td>
+                    <td><input th:value="${name}" type="text" name="name" placeholder="type food name
+" ></td>
+                </tr>
+                <tr>
+                    <td>Starting date</td>
+                    <td><input th:value="${startDate}" type="datetime-local" name="startDate" ></td>
+
+                </tr>
+                <tr>
+                    <td>End date</td>
+                    <td><input th:value="${endDate}" type="datetime-local" name="endDate" ></td>
+
+                </tr>
+                </table>
+                <button type="submit">Proceed</button>
+            </form>
+            <table>
+                <tr>
+                    <td>Total Income</td>
+                    <td th:text="${#numbers.formatCurrency(total)}" ></td>
+                </tr>
+            </table>
+        </div>
+
+    </main>
+    <footer th:replace="~{layout :: footer}"></footer>
+</div>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org">
+<head th:replace="~{layout :: head}"></head>
+
+
+        <div class="about-container">
+            <header th:replace="~{layout :: header}"></header>
+            <img class="about-image" th:src="@{/resources/image/BlissfulBite.jpeg}" alt="">
+            <div class="about-text">
+                <p><h3>Welcome to Blissful Restaurant</h3>
+                    At Blissful Bite, we are passionate about bringing the authentic flavors of Japan to your table. Our restaurant is located in the heart of Jakarta and offers a warm and welcoming atmosphere for diners of all ages.</p>
+
+                <p><h3>Our Founding Story</h3>
+                    Blissful Bite was founded in 2010 by Chef Taro Nakamura. Chef Nakamura grew up in Tokyo and has been passionate about Japanese cuisine since he was a young boy. After training with some of the best sushi chefs in Japan, Chef Nakamura moved to Jakarta to share his love of Japanese food with the world.</p>
+                <p>
+                    <h3>Our Philosophy and Values</h3>
+                    At Blissful Bite, we believe that food should be both delicious and healthy. That’s why we use only the freshest ingredients in our dishes, and we never use artificial flavors or preservatives. We also believe in treating our customers like family, and we strive to provide the best possible dining experience for everyone who visits our restaurant.
+                </p>
+
+                <p>
+                    <h3>Our Chef and Team</h3>
+                     Chef Nakamura leads a team of talented chefs and servers who are dedicated to providing the best possible dining experience for our customers. Our chefs have years of experience working in some of the best restaurants in Japan, and they bring that expertise to every dish they create.
+                </p>
+
+            </div>
+        <footer th:replace="~{layout :: footer}"></footer>
+        </div>
+</html>

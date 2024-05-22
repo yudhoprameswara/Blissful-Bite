@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org">
+
+<body class="admin-menu-container">
+
+    <header th:fragment="admin-header">
+        <div class="logo">
+            <a>
+                <img th:src="@{/resources/image/logo.PNG}" alt=""  >
+            </a>
+        </div>
+        <nav class="upper-nav-bar">
+          <a th:href="@{/admin/edit}">Food</a>
+          <a th:href="@{/history/index}">History</a>
+          <a th:href="@{/register/index}">Register</a>
+        </nav>
+        <a class="login" th:href="@{/}">back to Guest.</a>
+    </header>
+
+    <main class="content">
+
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org">
+
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blissful Bite</title>
+    <link rel="icon" type="image/ico" th:href="@{/favicon.ico}">
+    <link rel="stylesheet" th:href="@{/resources/css/normalize.css}">
+    <link rel="stylesheet" th:href="@{/resources/css/font-awesome.css}">
+    <link rel="stylesheet" th:href="@{/resources/css/site.css}">
+    <link rel="stylesheet" th:href="@{/resources/css/authorization.css}">
+    <script th:src="@{/resources/js/jquery-3.6.0.js}"></script>
+    <script th:src="@{/resources/js/site.js}" defer></script>
+</head>
+        <header th:fragment="header">
+            <div class="logo">
+                <a th:href="@{/}">
+                    <img th:src="@{/resources/image/logo.PNG}" alt=""  >
+                </a>
+            </div>
+            <nav class="upper-nav-bar">
+                <a th:href="@{/}">Home</a>
+                <a th:href="@{/food/index}">Menu</a>
+                <a th:href="@{/outlet/index}">Outlets</a>
+                <a th:href="@{/about/index}">About</a>
+                <a th:href="@{/contact/index}">Contact</a>
+            </nav>
+            <a th:href="@{/admin/edit}" class="login">
+                Login Admin
+            </a>
+        </header>
+        <div class="promo-card"  th:fragment="promo">
+            <div class="card">
+                <h2>Promo</h2>
+                <p>Promo Natal 30% untuk semua jenis makanan dan minuman , berlaku sampai akhir tahun 2023</p>
+            </div>
+
+            <div class="slider-frame">
+                <div class="slide-images">
+                    <div class="img-container">
+                        <img th:src="@{/resources/image/ramen.png}">
+                    </div>
+                    <div class="img-container">
+                        <img th:src="@{/resources/image/sashimi-salmon.jpg}">
+                    </div>
+                    <div class="img-container">
+                        <img th:src="@{/resources/image/sushi.jpg}">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="filter" th:fragment="filter(total)">
+
+            <form class="search" method="get" th:action="@{/food/index}">
+                <input type="text" placeholder="Search" name="name" th:value="${name}">
+                <button type="submit">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+
+            <div class="category-menu">
+                <a th:href="@{/food/index(category=Alacarte)}">Alacarte</a>
+                <a th:href="@{/food/index(category=Main)}">Main Course</a>
+                <a  th:href="@{/food/index(category=Breverage)}">Breverage</a>
+                <a  th:href="@{/food/index(category=Other)}">Others</a>
+            </div>
+
+            <a th:href="@{/cart/index}" class="cart">
+                <i class="fas fa-shopping-basket"></i>
+                <span class="badge" th:text="${total}"></span>
+            </a>
+
+        </div>
+        <footer th:fragment="footer">
+    Copyrights &copy; 2024
+    <span> Yudho Prameswara</span>
+    All rights reserved.
+</footer>
+</html>
